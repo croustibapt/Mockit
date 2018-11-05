@@ -91,7 +91,7 @@ open class CallHandlerImpl: CallHandler {
 
         transtion(toState: .none)
       case .verify:
-        verifyCall(ofFunction: function, atFile: file, inLine: line)
+        verifyCall(ofFunction: function, atFile: file, inLine: line, withArgs: args)
 
         transtion(toState: .none)
       case .getArgs:
@@ -160,8 +160,8 @@ extension CallHandlerImpl {
 extension CallHandlerImpl {
 
   fileprivate func verifyCall(ofFunction function: String, atFile file: String,
-                                     inLine line: Int) {
-    let timesCalled = timesInvoked(function)
+                              inLine line: Int, withArgs args: [Any?]) {
+    let timesCalled = timesInvoked(function, withArgs: args)
     let calledOnly = invokedOnly(function)
 
     let verificationData = VerificationData(build: {
@@ -175,12 +175,19 @@ extension CallHandlerImpl {
     verificationMode.verify(verificationData, mockFailer: mockFailer)
   }
 
-  fileprivate func timesInvoked(_ function: String) -> Int {
+  fileprivate func timesInvoked(_ function: String, withArgs args: [Any?]) -> Int {
     guard let arguments = callHistory[function] else {
       return 0
     }
 
-    return arguments.count
+    var timesCalled: Int = 0
+    for callArgs: [Any?] in arguments {
+        if MockMatcher.sharedInstance.match(arguments: args, withArguments: callArgs) {
+            timesCalled += 1
+        }
+    }
+
+    return timesCalled
   }
 
   fileprivate func invokedOnly(_ function: String) -> Bool {
