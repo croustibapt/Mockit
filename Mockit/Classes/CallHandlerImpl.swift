@@ -182,7 +182,7 @@ extension CallHandlerImpl {
 
     var timesCalled: Int = 0
     for callArgs: [Any?] in arguments {
-        if MockMatcher.sharedInstance.match(arguments: args, withArguments: callArgs) {
+        if MockMatcher.sharedInstance.match(arguments: callArgs, withArguments: args) {
             timesCalled += 1
         }
     }

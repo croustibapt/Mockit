@@ -42,6 +42,10 @@ public class StringMatcher: TypeMatcher {
   public func match(argument arg: Any, withArgument withArg: Any) -> Bool {
     switch (arg, withArg) {
       case (let firstArg as String, let secondArg as String):
+        guard secondArg != AnyValue.string else {
+            return true
+        }
+
         return firstArg == secondArg
       default:
         return false
@@ -59,6 +63,10 @@ public class BoolMatcher: TypeMatcher {
   public func match(argument arg: Any, withArgument withArg: Any) -> Bool {
     switch (arg, withArg) {
       case (let firstArg as Bool, let secondArg as Bool):
+        guard secondArg != AnyValue.bool else {
+            return true
+        }
+
         return firstArg == secondArg
       default:
         return false
@@ -76,6 +84,10 @@ public class IntMatcher: TypeMatcher {
   public func match(argument arg: Any, withArgument withArg: Any) -> Bool {
     switch (arg, withArg) {
       case (let firstArg as Int, let secondArg as Int):
+        guard secondArg != AnyValue.int else {
+            return true
+        }
+
         return firstArg == secondArg
       default:
         return false
@@ -93,6 +105,10 @@ public class DoubleMatcher: TypeMatcher {
   public func match(argument arg: Any, withArgument withArg: Any) -> Bool {
     switch (arg, withArg) {
       case (let firstArg as Double, let secondArg as Double):
+        guard secondArg != AnyValue.double else {
+            return true
+        }
+
         return firstArg == secondArg
       default:
         return false
@@ -110,6 +126,10 @@ public class FloatMatcher: TypeMatcher {
   public func match(argument arg: Any, withArgument withArg: Any) -> Bool {
     switch (arg, withArg) {
       case (let firstArg as Float, let secondArg as Float):
+        guard secondArg != AnyValue.float else {
+            return true
+        }
+
         return firstArg == secondArg
       default:
         return false

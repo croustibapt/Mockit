@@ -209,6 +209,20 @@ extension MockMatcherTests {
 
   func testDifferentBoolArgumentsDoNotMatch() {
     // Given
+    let firstArgument = false
+    let secondArgument = true
+
+    let sut = mockMatcher
+
+    // When
+    let result = sut?.match(arguments: firstArgument, withArguments: secondArgument)
+
+    // Then
+    XCTAssertFalse(result!)
+  }
+
+  func testDifferentBoolArgumentsAnyValue() {
+    // Given
     let firstArgument = true
     let secondArgument = false
 
@@ -218,7 +232,7 @@ extension MockMatcherTests {
     let result = sut?.match(arguments: firstArgument, withArguments: secondArgument)
 
     // Then
-    XCTAssertFalse(result!)
+    XCTAssertTrue(result!)
   }
 
 }

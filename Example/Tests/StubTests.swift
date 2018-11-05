@@ -211,7 +211,7 @@ class StubTests: XCTestCase {
 
     let functionName = "func"
     let expectedArgs: [Any?] = [1, "one", true]
-    let actualArgs: [Any?] = [AnyValue.int, AnyValue.string, AnyValue.bool]
+    let actualArgs: [Any?] = [2, "two", false]
 
     // When
     sut?.acceptStub(withFunctionName: functionName, andExpectedArgs: expectedArgs)
@@ -247,7 +247,7 @@ class StubTests: XCTestCase {
 
     let functionName = "func"
     let expectedArgs: [Any?] = [1, "one", true]
-    let actualArgs: [Any?] = [AnyValue.int, "one", AnyValue.bool]
+    let actualArgs: [Any?] = [2, "one", false]
 
     // When
     sut?.acceptStub(withFunctionName: functionName, andExpectedArgs: expectedArgs)
@@ -283,7 +283,7 @@ class StubTests: XCTestCase {
 
     let functionName = "func"
     let expectedArgs: [Any?] = [1, "one", true, nil]
-    let actualArgs: [Any?] = [AnyValue.int, AnyValue.string, AnyValue.bool, nil]
+    let actualArgs: [Any?] = [2, AnyValue.string, false, nil]
 
     // When
     sut?.acceptStub(withFunctionName: functionName, andExpectedArgs: expectedArgs)

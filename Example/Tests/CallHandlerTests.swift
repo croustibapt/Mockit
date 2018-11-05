@@ -247,8 +247,8 @@ extension CallHandlerTests {
     XCTAssertNil(failer.file)
     XCTAssertNil(failer.line)
 
-    let _ = mockImplementation.doSomethingWithNonOptionalArguments(AnyValue.string, arg2: AnyValue.int)
-    let _ = mockImplementation.doSomethingWithNonOptionalArguments(AnyValue.string, arg2: AnyValue.int)
+    let _ = mockImplementation.doSomethingWithNonOptionalArguments("one", arg2: 1)
+    let _ = mockImplementation.doSomethingWithNonOptionalArguments("one", arg2: 1)
 
     // When
     let _ = mockImplementation.verify(verificationMode: AtLeastOnce()).doSomethingWithNonOptionalArguments("one", arg2: 1)
